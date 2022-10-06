@@ -49,13 +49,5 @@ public class AlunoService {
 		
 		alunoRepository.deleteById(id);
 		return getAlunoById(id);
-		//if(null != getAlunoById(id))
-			//return false;
-		//else
-			//return true;
-			
-		
-		
 	}
-	
 }
