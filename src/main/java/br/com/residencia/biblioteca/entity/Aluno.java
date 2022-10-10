@@ -12,136 +12,115 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="alunos")
+@Table(name = "alunos")
 public class Aluno {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column (name="numeroMatriculaAluno")
+	@Column(name = "numeromatriculaaluno")
 	private Integer numeroMatriculaAluno;
-	
-	@Column (name="nome")
+
+	@Column(name = "nome")
 	private String nome;
-	
-	@Column (name = "datanascimento")
+
+	@Column(name = "datanascimento")
 	private Instant dataNascimento;
-	
-	@Column (name="cpf")
+
+	@Column(name = "cpf")
 	private String cpf;
-	
-	@Column (name="logradouro")
+
+	@Column(name = "logradouro")
 	private String logradouro;
-	
-	@Column (name="numeroLogradouro")
+
+	@Column(name = "numerologradouro")
 	private String numeroLogradouro;
-	
-	@Column (name="complemento")
+
+	@Column(name = "complemento")
 	private String complemento;
-	
-	@Column (name="bairro")
+
+	@Column(name = "bairro")
 	private String bairro;
-	
 
-	@Column (name="cidade")
+	@Column(name = "cidade")
 	private String cidade;
-	
-	@OneToMany(mappedBy="aluno")
-	private Set<Emprestimo> emprestimos;
 
+	@OneToMany(mappedBy = "aluno")
+	private Set<Emprestimo> emprestimos;
 
 	public Integer getNumeroMatriculaAluno() {
 		return numeroMatriculaAluno;
 	}
 
-
 	public void setNumeroMatriculaAluno(Integer numeroMatriculaAlunos) {
 		this.numeroMatriculaAluno = numeroMatriculaAlunos;
 	}
-
 
 	public String getNome() {
 		return nome;
 	}
 
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
 
 	public Instant getDataNascimento() {
 		return dataNascimento;
 	}
 
-
 	public void setDataNascimento(Instant dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
-
 
 	public String getCpf() {
 		return cpf;
 	}
 
-
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-
 
 	public String getLogradouro() {
 		return logradouro;
 	}
 
-
 	public void setLogradouro(String logradouro) {
 		this.logradouro = logradouro;
 	}
-
 
 	public String getNumeroLogradouro() {
 		return numeroLogradouro;
 	}
 
-
 	public void setNumeroLogradouro(String numeroLogradouro) {
 		this.numeroLogradouro = numeroLogradouro;
 	}
-
 
 	public String getComplemento() {
 		return complemento;
 	}
 
-
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
 	}
-
 
 	public String getBairro() {
 		return bairro;
 	}
 
-
 	public void setBairro(String bairro) {
 		this.bairro = bairro;
 	}
-
 
 	public String getCidade() {
 		return cidade;
 	}
 
-
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
 	}
 
-
 	public Set<Emprestimo> getEmprestimos() {
 		return emprestimos;
 	}
-
 
 	public void setEmprestimos(Set<Emprestimo> emprestimos) {
 		this.emprestimos = emprestimos;

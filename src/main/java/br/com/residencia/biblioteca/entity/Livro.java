@@ -13,32 +13,31 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="livros")
+@Table(name = "livros")
 public class Livro {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column (name="codigolivro")
+	@Column(name = "codigolivro")
 	private Integer codigoLivro;
-	
-	@Column (name="nomelivro")
+
+	@Column(name = "nomelivro")
 	private String nomeLivro;
-	
-	@Column (name = "nomeautor")
+
+	@Column(name = "nomeautor")
 	private String nomeAutor;
-	
-	@Column (name="datalancamento")
+
+	@Column(name = "datalancamento")
 	private Instant dataLancamento;
-	
-	@Column (name="codigoisbn")
+
+	@Column(name = "codigoisbn")
 	private Integer codigoIsbn;
-	
-	
+
 	@ManyToOne
-	@JoinColumn(name="codigoeditora", referencedColumnName="codigoeditora")
+	@JoinColumn(name = "codigoeditora", referencedColumnName = "codigoeditora")
 	private Editora editora;
-	
-	@OneToOne(mappedBy="livro")
+
+	@OneToOne(mappedBy = "livro")
 	private Emprestimo emprestimo;
 
 	public Integer getCodigoLivro() {

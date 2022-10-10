@@ -11,18 +11,18 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table (name = "editora")                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+@Table(name = "editora")
 public class Editora {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "codigoeditora")
 	private Integer codigoEditora;
-	
+
 	@Column(name = "nome")
 	private String nome;
-	
-	@OneToMany(mappedBy="livros")
+
+	@OneToMany(mappedBy = "editora")
 	private Set<Livro> livros;
 
 	public Integer getCodigoEditora() {
@@ -48,7 +48,4 @@ public class Editora {
 	public void setLivros(Set<Livro> livros) {
 		this.livros = livros;
 	}
-	
-	
-	
 }

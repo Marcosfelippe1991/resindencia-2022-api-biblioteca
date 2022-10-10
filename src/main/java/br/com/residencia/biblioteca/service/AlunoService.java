@@ -8,30 +8,30 @@ import org.springframework.stereotype.Service;
 import br.com.residencia.biblioteca.entity.Aluno;
 import br.com.residencia.biblioteca.repository.AlunoRepository;
 
-
 @Service
 public class AlunoService {
 
 	@Autowired
-	AlunoRepository alunoRepository;    
-	
-	public List<Aluno> getAllAlunos(){
+	AlunoRepository alunoRepository;
+
+	public List<Aluno> getAllAlunos() {
 		return alunoRepository.findAll();
 	}
-	
+
 	public Aluno getAlunoById(Integer id) {
-		return alunoRepository.findById(id).get();
+		// return alunoRepository.findById(id).get();
+		return alunoRepository.findById(id).orElse(null);
 	}
-	
+
 	public Aluno saveAluno(Aluno aluno) {
 		return alunoRepository.save(aluno);
-		
+
 	}
-	
+
 	public Aluno updateAluno(Aluno aluno, Integer id) {
-		
+
 		Aluno alunoExistenteNoBanco = getAlunoById(id);
-		
+
 		alunoExistenteNoBanco.setBairro(aluno.getBairro());
 		alunoExistenteNoBanco.setCidade(aluno.getCidade());
 		alunoExistenteNoBanco.setComplemento(aluno.getComplemento());
@@ -41,12 +41,12 @@ public class AlunoService {
 		alunoExistenteNoBanco.setLogradouro(aluno.getNumeroLogradouro());
 		alunoExistenteNoBanco.setNome(aluno.getNome());
 		alunoExistenteNoBanco.setNumeroLogradouro(aluno.getNumeroLogradouro());
-		
+
 		return alunoRepository.save(alunoExistenteNoBanco);
 	}
-	
+
 	public Aluno deleteAluno(Integer id) {
-		
+
 		alunoRepository.deleteById(id);
 		return getAlunoById(id);
 	}

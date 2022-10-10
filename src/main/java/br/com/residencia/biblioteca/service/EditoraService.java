@@ -12,36 +12,35 @@ import br.com.residencia.biblioteca.repository.EditoraRepository;
 public class EditoraService {
 
 	@Autowired
-	EditoraRepository editoraRepository;    
-	
-	public List<Editora> getAllEditoras(){
+	EditoraRepository editoraRepository;
+
+	public List<Editora> getAllEditoras() {
 		return editoraRepository.findAll();
 	}
-	
+
 	public Editora getEditoraById(Integer id) {
-		return editoraRepository.findById(id).get();
+		// return alunoRepository.findById(id).get();
+		return editoraRepository.findById(id).orElse(null);
 	}
-	
+
 	public Editora saveEditora(Editora editora) {
 		return editoraRepository.save(editora);
-		
+
 	}
-	
+
 	public Editora updateEditora(Editora editora, Integer id) {
-		
+
 		Editora editoraExistenteNoBanco = getEditoraById(id);
-		
+
 		editoraExistenteNoBanco.setNome(editora.getNome());
-		
-		
-		
+
 		return editoraRepository.save(editoraExistenteNoBanco);
 	}
-	
+
 	public Editora deleteEditora(Integer id) {
-		
+
 		editoraRepository.deleteById(id);
 		return getEditoraById(id);
-		
+
 	}
 }

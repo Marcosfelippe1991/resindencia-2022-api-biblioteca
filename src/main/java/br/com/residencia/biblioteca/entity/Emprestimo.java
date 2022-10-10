@@ -4,35 +4,39 @@ import java.math.BigDecimal;
 import java.time.Instant;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "emprestimo")
 public class Emprestimo {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column (name="codigoemprestimo")
+	@Column(name = "codigoemprestimo")
 	private Integer codigoEmprestimo;
-	
-	@Column (name = "dataemprestimo")
+
+	@Column(name = "dataemprestimo")
 	private Instant dataEmprestimo;
-	
-	@Column (name="dataentrega")
+
+	@Column(name = "dataentrega")
 	private Instant dataEntrega;
-	
-	@Column (name="valoremprestimo")
+
+	@Column(name = "valoremprestimo")
 	private BigDecimal valorEmprestimo;
-	
+
 	@OneToOne
-	@JoinColumn(name="codigolivro", referencedColumnName="codigolivro")
+	@JoinColumn(name = "codigolivro", referencedColumnName = "codigolivro")
 	private Livro livro;
-	
+
 	@ManyToOne
-	@JoinColumn(name="numeromatriculaaluno", referencedColumnName="numeromatriculaaluno")
+	@JoinColumn(name = "numeromatriculaaluno", referencedColumnName = "numeromatriculaaluno")
 	private Aluno aluno;
 
 	public Integer getCodigoEmprestimo() {
