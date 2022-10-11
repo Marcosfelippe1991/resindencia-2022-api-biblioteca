@@ -12,6 +12,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+@JsonIdentityInfo(
+		generator = ObjectIdGenerators.PropertyGenerator.class,
+		property = "codigoLivro")
 @Entity
 @Table(name = "livros")
 public class Livro {
@@ -36,7 +42,7 @@ public class Livro {
 	@ManyToOne
 	@JoinColumn(name = "codigoeditora", referencedColumnName = "codigoeditora")
 	private Editora editora;
-
+	
 	@OneToOne(mappedBy = "livro")
 	private Emprestimo emprestimo;
 

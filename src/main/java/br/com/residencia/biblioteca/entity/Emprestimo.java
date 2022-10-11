@@ -13,6 +13,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+@JsonIdentityInfo(
+		generator = ObjectIdGenerators.PropertyGenerator.class,
+		property = "codigoEmprestimo")
 @Entity
 @Table(name = "emprestimo")
 public class Emprestimo {
@@ -30,7 +36,7 @@ public class Emprestimo {
 
 	@Column(name = "valoremprestimo")
 	private BigDecimal valorEmprestimo;
-
+	
 	@OneToOne
 	@JoinColumn(name = "codigolivro", referencedColumnName = "codigolivro")
 	private Livro livro;
