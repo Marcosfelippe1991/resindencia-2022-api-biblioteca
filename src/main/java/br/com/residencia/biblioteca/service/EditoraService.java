@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.residencia.biblioteca.dto.EditoraDTO;
 import br.com.residencia.biblioteca.entity.Editora;
 import br.com.residencia.biblioteca.repository.EditoraRepository;
 
@@ -17,6 +18,13 @@ public class EditoraService {
 	public List<Editora> getAllEditoras() {
 		return editoraRepository.findAll();
 	}
+	
+	public List<EditoraDTO> getAllEditorasDTO() {
+		
+		
+		
+		return editoraRepository.findAll();
+	}
 
 	public Editora getEditoraById(Integer id) {
 		// return alunoRepository.findById(id).get();
@@ -26,6 +34,21 @@ public class EditoraService {
 	public Editora saveEditora(Editora editora) {
 		return editoraRepository.save(editora);
 
+	}
+	
+	public EditoraDTO saveEditoraDTO(EditoraDTO editoraDTO) {
+		
+		Editora editora = new Editora();
+		editora.setNome(editoraDTO.getNome());
+		
+		Editora novaEditora = editoraRepository.save(editora);
+		EditoraDTO novaEditoraDTO = new EditoraDTO();
+		
+		novaEditoraDTO.setCodigoEditora(novaEditora.getCodigoEditora());
+		novaEditoraDTO.setNome(novaEditora.getNome());
+		
+		return novaEditoraDTO;
+		
 	}
 
 	public Editora updateEditora(Editora editora, Integer id) {
