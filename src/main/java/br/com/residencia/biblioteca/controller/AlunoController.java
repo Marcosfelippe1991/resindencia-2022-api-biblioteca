@@ -22,34 +22,41 @@ import br.com.residencia.biblioteca.service.AlunoService;
 public class AlunoController {
 	@Autowired
 	AlunoService alunoService;
-
+	
 	@GetMapping
-	public ResponseEntity<List<Aluno>> getAllAlunos() {
-		return new ResponseEntity<>(alunoService.getAllAlunos(), HttpStatus.OK);
+	public ResponseEntity<List<Aluno>> getAllAlunos(){
+		return new ResponseEntity<>(alunoService.getAllAlunos(),
+				HttpStatus.OK);
 	}
-
+	
 	@GetMapping("/{id}")
 	public ResponseEntity<Aluno> getAlunoById(@PathVariable Integer id) {
-		return new ResponseEntity<>(alunoService.getAlunoById(id), HttpStatus.OK);
+		Aluno aluno = alunoService.getAlunoById(id);
+		if(null != aluno)
+			return new ResponseEntity<>(aluno,
+					HttpStatus.OK);
+		else
+			return new ResponseEntity<>(aluno,
+					HttpStatus.NOT_FOUND);
 	}
-
+	
 	@PostMapping
 	public ResponseEntity<Aluno> saveAluno(@RequestBody Aluno aluno) {
-		return new ResponseEntity<>(alunoService.saveAluno(aluno), HttpStatus.CREATED);
-
+		return new ResponseEntity<>(alunoService.saveAluno(aluno),
+				HttpStatus.CREATED);
 	}
-
+	
 	@PutMapping("/{id}")
-	public ResponseEntity<Aluno> updateAluno(@RequestBody Aluno aluno, @PathVariable Integer id) {
-		return new ResponseEntity<>(alunoService.updateAluno(aluno, id), HttpStatus.OK);
+	public ResponseEntity<Aluno> updateAluno(@RequestBody Aluno aluno, 
+			@PathVariable Integer id){
+		return new ResponseEntity<>(alunoService.updateAluno(aluno, id),
+				HttpStatus.OK);
 	}
-
+	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Aluno> deleteAluno(@PathVariable Integer id) {
-		Aluno aluno = alunoService.getAlunoById(id);
-		if (null == aluno)
-			return new ResponseEntity<>(aluno, HttpStatus.NOT_FOUND);
-		else
-			return new ResponseEntity<>(alunoService.deleteAluno(id), HttpStatus.OK);
+		return new ResponseEntity<>(alunoService.deleteAluno(id),
+				HttpStatus.OK);
 	}
+
 }

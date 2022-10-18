@@ -1,19 +1,11 @@
 package br.com.residencia.biblioteca.dto;
 
+import java.util.List;
+
 public class EditoraDTO {
-
-	public EditoraDTO() {
-
-	}
-
 	private Integer codigoEditora;
 	private String nome;
-
-	public EditoraDTO(Integer codigoEditora, String nome) {
-		super();
-		this.codigoEditora = codigoEditora;
-		this.nome = nome;
-	}
+	private List<LivroDTO> listaLivrosDTO;
 
 	public Integer getCodigoEditora() {
 		return codigoEditora;
@@ -31,34 +23,11 @@ public class EditoraDTO {
 		this.nome = nome;
 	}
 
+	public List<LivroDTO> getListaLivrosDTO() {
+		return listaLivrosDTO;
+	}
+
+	public void setListaLivrosDTO(List<LivroDTO> listaLivrosDTO) {
+		this.listaLivrosDTO = listaLivrosDTO;
+	}
 }
- /*package carro;
-
-public class CarroDto {
-
-	private String nomeModelo;
-	private String numAssentos;
-
-	public CarroDto(String nomeModelo, String numAssentos) {
-		super();
-		this.nomeModelo = nomeModelo;
-		this.numAssentos = numAssentos;
-	}
-
-	public String getNomeModelo() {
-		return nomeModelo;
-	}
-
-	public void setNomeModelo(String nomeModelo) {
-		this.nomeModelo = nomeModelo;
-	}
-
-	public String getNumAssentos() {
-		return numAssentos;
-	}
-
-	public void setNumAssentos(String numAssentos) {
-		this.numAssentos = numAssentos;
-	}
-
-}*/

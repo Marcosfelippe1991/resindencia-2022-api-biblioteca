@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.residencia.biblioteca.dto.LivroDTO;
 import br.com.residencia.biblioteca.entity.Livro;
 import br.com.residencia.biblioteca.service.LivroService;
 
@@ -22,34 +23,59 @@ import br.com.residencia.biblioteca.service.LivroService;
 public class LivroController {
 	@Autowired
 	LivroService livroService;
-
+	
 	@GetMapping
-	public ResponseEntity<List<Livro>> getAllLivros() {
-		return new ResponseEntity<>(livroService.getAllLivros(), HttpStatus.OK);
+	public ResponseEntity<List<Livro>> getAllLivros(){
+		return new ResponseEntity<>(livroService.getAllLivros(),
+				HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Livro> getLivroById(@PathVariable Integer id) {
-		return new ResponseEntity<>(livroService.getLivroById(id), HttpStatus.OK);
+		Livro livro = livroService.getLivroById(id);
+		if(null != livro)
+			return new ResponseEntity<>(livro,
+					HttpStatus.OK);
+		else
+			return new ResponseEntity<>(livro,
+					HttpStatus.NOT_FOUND);
 	}
-
+	
 	@PostMapping
 	public ResponseEntity<Livro> saveLivro(@RequestBody Livro livro) {
-		return new ResponseEntity<>(livroService.saveLivro(livro), HttpStatus.CREATED);
-
+		return new ResponseEntity<>(livroService.saveLivro(livro),
+				HttpStatus.CREATED);
 	}
 
+	@PostMapping("/dto")
+	public ResponseEntity<LivroDTO> saveLivroDTO(@RequestBody LivroDTO livroDTO) {
+		return new ResponseEntity<>(livroService.saveLivroDTO(livroDTO),
+				HttpStatus.CREATED);
+	}
+	
 	@PutMapping("/{id}")
-	public ResponseEntity<Livro> updateLivro(@RequestBody Livro livro, @PathVariable Integer id) {
-		return new ResponseEntity<>(livroService.updateLivro(livro, id), HttpStatus.OK);
+	public ResponseEntity<Livro> updateLivro(@RequestBody Livro livro, 
+			@PathVariable Integer id){
+		return new ResponseEntity<>(livroService.updateLivro(livro, id),
+				HttpStatus.OK);
 	}
 
+	@PutMapping("/dto/{id}")
+	public ResponseEntity<LivroDTO> updateLivroDTO(@RequestBody LivroDTO livroDTO, 
+			@PathVariable Integer id){
+		return new ResponseEntity<>(livroService.updateLivroDTO(livroDTO, id),
+				HttpStatus.OK);
+	}
+	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Livro> deleteLivro(@PathVariable Integer id) {
 		Livro livro = livroService.getLivroById(id);
-		if (null == livro)
-			return new ResponseEntity<>(livro, HttpStatus.NOT_FOUND);
+		if(null == livro)
+			return new ResponseEntity<>(livro,
+					HttpStatus.NOT_FOUND);
 		else
-			return new ResponseEntity<>(livroService.deleteLivro(id), HttpStatus.OK);
+			return new ResponseEntity<>(livroService.deleteLivro(id),
+					HttpStatus.OK);
 	}
+
 }
